@@ -27,6 +27,8 @@ app.get('/flower',(req,res)=>{
     res.sendFile(path.join(__dirname,'./index.html'))
     console.log("success")
 })
+
+// Create
 app.post('/create',(req,res)=>{
 const client = new MongoClient("mongodb://127.0.0.1:27017")
 client.connect()
@@ -37,6 +39,8 @@ console.log(req.body)
 res.send("submited")
 })
 
+
+//Update
 app.post('/update', (req,res)=>{
     const client = new MongoClient("mongodb://127.0.0.1:27017")
 client.connect()
@@ -49,6 +53,8 @@ res.send("Updated")
 
 })
 
+//Delete
+
 app.post('/delete', (req, res)=>{
     const client = new MongoClient("mongodb://127.0.0.1:27017")
     client.connect();
@@ -59,6 +65,21 @@ app.post('/delete', (req, res)=>{
     name.deleteOne({fname:del});
     console.log("deleted", req.body);
     res.send("deleted");
+})
+
+
+//Retrive
+
+app.get('/retrive', (req,res)=>{
+    const client = new MongoClient("mongodb://127.0.0.1:27017")
+    client.connect();
+    const database= client.db("flower_database");
+    const name= database.collection("flower_name");
+    const ret=req.body;
+    name.find({ret});
+    console.log("Retrived", req.body);
+    res.send(ret);
+
 })
 
 
