@@ -28,12 +28,17 @@ app.get('/flower',(req,res)=>{
     console.log("success")
 })
 
-// Create
+// Create // retrive
 app.post('/create',(req,res)=>{
 const client = new MongoClient("mongodb://127.0.0.1:27017")
 client.connect()
 const database= client.db("flower_database");
 const name= database.collection("flower_name");
+const ret=req.body;
+    console.log(req.body)
+   let retrive= name.find({ret});
+    console.log("Retrived", req.body);
+    res.send(req.body.fname);
 name.insertOne(req.body)
 console.log(req.body)
 res.send("submited")
@@ -70,17 +75,18 @@ app.post('/delete', (req, res)=>{
 
 //Retrive
 
-app.get('/retrive', (req,res)=>{
-    const client = new MongoClient("mongodb://127.0.0.1:27017")
-    client.connect();
-    const database= client.db("flower_database");
-    const name= database.collection("flower_name");
-    const ret=req.body;
-    name.find({ret});
-    console.log("Retrived", req.body);
-    res.send(ret);
+// app.get('/retrive', (req,res)=>{
+//     const client = new MongoClient("mongodb://127.0.0.1:27017")
+//     client.connect();
+//     const database= client.db("flower_database");
+//     const name= database.collection("flower_name");
+//     const ret=req.body;
+//     console.log(req.body)
+//     name.find({ret});
+//     console.log("Retrived", req.body);
+//     res.send(ret);
 
-})
+// })
 
 
 
