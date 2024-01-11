@@ -28,7 +28,7 @@ app.get('/flower',(req,res)=>{
     console.log("success")
 })
 
-// Create // retrive
+// Create
 app.post('/create',(req,res)=>{
 const client = new MongoClient("mongodb://127.0.0.1:27017")
 client.connect()
@@ -36,9 +36,9 @@ const database= client.db("flower_database");
 const name= database.collection("flower_name");
 const ret=req.body;
     console.log(req.body)
-   let retrive= name.find({ret});
+    name.find({ret});
     console.log("Retrived", req.body);
-    res.send(req.body.fname);
+    res.send(ret);
 name.insertOne(req.body)
 console.log(req.body)
 res.send("submited")
@@ -52,8 +52,9 @@ client.connect()
 const database= client.db("flower_database");
 const name= database.collection("flower_name");
 const update=req.body.fname;
-name.updateOne({fname:"melon"}, {$set:{fname:update}})
+name.updateOne({fname:"dubai"}, {$set:{fname:update}})
 console.log(update.fname)
+
 res.send("Updated")
 
 })
@@ -75,23 +76,28 @@ app.post('/delete', (req, res)=>{
 
 //Retrive
 
-// app.get('/retrive', (req,res)=>{
-//     const client = new MongoClient("mongodb://127.0.0.1:27017")
-//     client.connect();
-//     const database= client.db("flower_database");
-//     const name= database.collection("flower_name");
-//     const ret=req.body;
-//     console.log(req.body)
-//     name.find({ret});
-//     console.log("Retrived", req.body);
-//     res.send(ret);
+app.post('/retrive', (req,res)=>{
+    const client = new MongoClient("mongodb://127.0.0.1:27017")
+    client.connect();
+    const database= client.db("flower_database");
+    const name= database.collection("flower_name");
+  
+ const rett =  async ()=>{ 
+    const ret= await name.find().toArray();
+    console.log(ret);
+    res.json(ret);
 
-// })
+}
+rett()
+    
+   
+    
+})
 
 
 
 
 
-app.listen(3080, ()=> console.log("Connected"));
+app.listen(8080, ()=> console.log("Connected"));
 
     
