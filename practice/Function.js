@@ -27,7 +27,7 @@
 // console.log(isPositive(0))
 
 const students= new Map([
-    ['Ramesh M]', 90],
+    ['Ramesh M', 90],
     ['shiv', 90],
     ['Ramanathan', 99],
     ['sonali', 80],
@@ -35,8 +35,8 @@ const students= new Map([
     ['dharasana', 88],
     ['visali', 90],
     ['rough', 999]
-]);
-students.delete('rough');
+])
+
 
 const iterater1 = students[Symbol.iterator]();
 // console.log(iterater1.next().value);
@@ -48,3 +48,16 @@ for(const item of iterater1){
 const sett= new Set(
     [1,1,1,1,1,1,1]);
 console.log(sett);
+
+
+function sum(){
+    console.log("outer function")
+    function sum1(){
+       console.log("inner function")
+    }
+    return sum1
+
+}
+
+const fun =sum()
+fun()

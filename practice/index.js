@@ -33,12 +33,7 @@ app.post('/create',(req,res)=>{
 const client = new MongoClient("mongodb://127.0.0.1:27017")
 client.connect()
 const database= client.db("flower_database");
-const name= database.collection("flower_name");
-const ret=req.body;
-    console.log(req.body)
-    name.find({ret});
-    console.log("Retrived", req.body);
-    res.send(ret);
+const name= database.collection("flower_name"); 
 name.insertOne(req.body)
 console.log(req.body)
 res.send("submited")
@@ -52,10 +47,12 @@ client.connect()
 const database= client.db("flower_database");
 const name= database.collection("flower_name");
 const update=req.body.fname;
-name.updateOne({fname:"dubai"}, {$set:{fname:update}})
-console.log(update.fname)
+console.log(update);
+const neww = req.body.newname; 
+console.log(neww);
+name.updateOne({fname:update}, {$set:{fname:neww}})   
 
-res.send("Updated")
+res.send("Updated")   
 
 })
 
