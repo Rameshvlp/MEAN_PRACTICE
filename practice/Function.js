@@ -61,3 +61,20 @@ function sum(){
 
 const fun =sum()
 fun()
+ var arr=[1,2,3,4,5]
+//  arr.push(2);
+//  arr.unshift(1);
+//  console.log(arr);
+ arr.splice(1,0,7);
+ console.log(arr);
+
+ let ar=[
+    {
+        name:'ramesh',
+        age:'20'
+    },{
+        name:'deva',
+        age:'20'
+    }
+ ];
+console.log(ar[1]);
