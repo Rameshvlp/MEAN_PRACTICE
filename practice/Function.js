@@ -77,4 +77,14 @@ fun()
         age:'20'
     }
  ];
-console.log(ar[1]);
+// console.log(ar[1].age);
+for(let val in ar)
+{
+    console.log(ar[val])
+}
+ar.filter(element => {
+    console.log(element)
+});
+const val=ar.filter(function(item){
+    return item.name==='ramesh';
+});
